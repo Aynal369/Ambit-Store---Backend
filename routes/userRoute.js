@@ -6,14 +6,11 @@ const router = express.Router();
 router
   .route("/users")
   .post(userController.createUser)
+  .get(userController.getAllUser);
+router
+  .route("/users/:email")
+  .get(userController.getUserByEmail)
   .put(userController.putUserJwtToken)
-  .get(userController.getUsers)
-  .patch(userController.patchUser);
-/* router
-  .route("/:id")
-  .delete(userController.deleteUser)
-  .get(userController.getUserById)
-  .put(userController.putUser);
- */
+  .patch(userController.patchUserRole);
 
 module.exports = router;

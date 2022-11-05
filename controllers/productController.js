@@ -43,16 +43,16 @@ exports.getProductsById = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({
       status: "fail",
-      message: "Couldn't update user",
+      message: "Can't get the data",
       error: error.message,
     });
   }
 };
 exports.putUpdateProduct = async (req, res, next) => {
   try {
-    const filters = { ...req.query };
-    const cursor = req.body;
-    const result = await Product.updateOne(filters, cursor);
+    const id = req.params.id;
+    const body = req.body;
+    const result = await Product.findByIdAndUpdate(id, body);
     res.status(200).json({
       status: "success",
       message: "Successfully updated",
@@ -61,7 +61,24 @@ exports.putUpdateProduct = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({
       status: "fail",
-      message: "Couldn't update user",
+      message: "Can't get the data",
+      error: error.message,
+    });
+  }
+};
+exports.deleteProduct = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const result = await Product.findByIdAndDelete(id);
+    res.status(200).json({
+      status: "success",
+      message: "Successfully deleted",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: "Can't get the data",
       error: error.message,
     });
   }
