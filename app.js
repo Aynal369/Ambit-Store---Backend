@@ -8,7 +8,7 @@ app.use(cors());
 
 // Global route
 app.get("/", (req, res) => {
-  res.send("welcome to crud project");
+  res.send("Welcome to Ambit Store");
 });
 
 // routes
